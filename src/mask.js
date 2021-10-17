@@ -9,10 +9,27 @@ export default class Mask {
     this.env = new Env()
     this.scene = this.env.scene
     this.camera = this.env.camera
-    this.progress = 0
+    this.pane = this.env.pane
+
+    this.config = {
+      progress: 0
+    }
+
+    this._setPane()
     this._setGeometry()
     this._setMaterial()
     this._setMesh()
+  }
+
+  _setPane() {
+    this.folder = this.pane.addFolder({
+      title: '水墨遮罩'
+    })
+    this.folder.addInput(this.config, 'progress', {
+      step: 0.01,
+      min: 0,
+      max: 1
+    })
   }
 
   _setGeometry() {
@@ -45,8 +62,7 @@ export default class Mask {
   }
 
   update() {
-    this.progress = (this.progress + 0.01) % 1
-    this.material.uniforms.uProgress.value = this.progress
+    this.material.uniforms.uProgress.value = this.config.progress
   }
   
 }
