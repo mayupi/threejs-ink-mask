@@ -4,7 +4,6 @@ import vertexShader from './shaders/mask/vertex.glsl'
 import fragmentShader from './shaders/mask/fragment.glsl'
 
 export default class Mask {
-  
   constructor() {
     this.env = new Env()
     this.scene = this.env.scene
@@ -60,10 +59,8 @@ export default class Mask {
     this.mesh = new THREE.Mesh(this.geometry, this.material)
     this.scene.add(this.mesh)
   }
-
+  // update function
   update() {
     this.material.uniforms.uProgress.value = this.config.progress
   }
-  
 }
-
